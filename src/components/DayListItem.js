@@ -16,7 +16,7 @@ export default function DayListItem(props) {
   // (props.selected) ? listClass+="--selected" : listClass+="";
   // (spots) ? listClass+="--full" : listClass+=""
 
-  console.log("listClass", listClass);
+  // console.log("listClass", listClass);
 
   const spotsText = () => {
     let answer = props.spots + " spots remaining";
@@ -27,7 +27,7 @@ export default function DayListItem(props) {
       answer = "1 spot remaining";
     }
 
-    console.log("answer", answer);
+    // console.log("answer", answer);
     return answer;
   };
 
