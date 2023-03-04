@@ -17,18 +17,20 @@
       cursor: pointer;
       color: $dark-background;
     }
-
-    &--selected {
-      background-color: darken($white, 5%);
-      color: $dark-background;
-
-      &:hover {
-        background-color: darken($white, 5%);
-      }
-    }
-
-    &--full {
-      opacity: $inactive-opacity;
-    }
   }
+}
+
+// The provide scss file was not applying the .day-list__item, so I had to factor it out here to make it work
+// I worked with a mentor to solve this and we agreed on this solution
+.--selected {
+  background-color: darken($white, 5%);
+  color: $dark-background;
+
+  &:hover {
+    background-color: darken($white, 5%);
+  }
+}
+
+.--full {
+  opacity: $inactive-opacity;
 }
