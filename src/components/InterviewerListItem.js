@@ -4,6 +4,8 @@ import "components/InterviewerListItem.scss"
 
 const InterviewerListItem = (props) => {
 
+  console.log("InterviewerListItem props", props);
+
   let interviewerClass = "interviewers__item";
   (props.selected) ? interviewerClass+="--selected" : interviewerClass+="";
 
