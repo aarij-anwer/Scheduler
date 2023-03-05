@@ -113,6 +113,7 @@ const interviewers = [
   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 ];
 
+
 storiesOf("InterviewerList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -125,13 +126,12 @@ storiesOf("InterviewerList", module)
   .add("Selected", () => (
     <InterviewerList
       interviewers={interviewers}
-      interviewer={3}
+      value={3}
     />
   ))
   .add("Clickable", () => (
-    <InterviewerListItem
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      setInterviewer={() => action("setInterviewer")(interviewer.id)}
+    <InterviewerList
+      interviewers={interviewers}
+      onChange={action("setInterviewer")}
     />
   ));
