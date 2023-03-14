@@ -77,9 +77,9 @@ export default function Application(props) {
       });
   }, []);
 
-  const mappedAppointments = dailyAppointments.map((appointment) =>
-    <Appointment key={appointment.id} {...appointment} />
-  );
+  const mappedAppointments = dailyAppointments.map((appointment) => {
+    return <Appointment key={appointment.id} {...appointment} />
+  });
 
   return (
     <main className="layout">
