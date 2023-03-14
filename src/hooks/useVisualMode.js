@@ -4,11 +4,18 @@ const useVisualMode = (initial) => {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]); 
 
-  const transition = (newMode) => {
+  const transition = (newMode, replace = false) => {
     setMode(newMode);
-    setHistory((prev) => {
-      return([...prev, newMode])
-    });
+    if (!replace) {
+      setHistory((prev) => {
+        return([...prev, newMode])
+      });
+    } else {
+      setHistory((prev) => {
+        prev.pop();
+        return([...prev, newMode])
+      });
+    }
   };
 
   const back = () => {
