@@ -22,7 +22,7 @@ const Appointment = (props) => {
 
   const { mode, transition, back } = useVisualMode(initial);
 
-  const interviewers = [];
+  const interviewers = props.interviewers;
 
   return (
     <Fragment>

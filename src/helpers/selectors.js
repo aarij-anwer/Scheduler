@@ -20,7 +20,7 @@ export function getAppointmentsForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-  
+
   if (!interview) {
     return null;
   } else {
@@ -36,5 +36,21 @@ export function getInterview(state, interview) {
 }
 
 export function getInterviewersForDay(state, day) {
-  
+
+  let answer;
+
+  state.days.forEach((element) => {
+    if (element.name === day) {
+      answer = element;
+    }
+  });
+
+  const returnVal = [];
+  if (answer) {
+    answer.interviewers.forEach((element) => {
+      returnVal.push(state.interviewers[element]);
+    });
+  }
+
+  return returnVal;
 }
