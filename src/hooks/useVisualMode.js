@@ -13,16 +13,17 @@ const useVisualMode = (initial) => {
 
   const back = () => {
     if (mode !== initial) {
-      setHistory((prev) => {
-        let newData = prev.slice();
-        newData.pop();
-        return [...newData];
-      });
       setMode(history[history.length-2]);
+      setHistory((prev) => {
+        // let newData = prev.slice();
+        // newData.pop();
+        prev.pop();
+        return [...prev];
+      });
     }
   };
   
-  // console.log(history);
+  console.log(history);
   return { mode, transition, back };
 };
 
