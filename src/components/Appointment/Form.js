@@ -4,6 +4,8 @@ import Button from "components/Button";
 
 const Form = (props) => {
 
+  console.log("Form props", props);
+
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
@@ -20,6 +22,9 @@ const Form = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     console.log("submitHandler fired!");
+    const student = event.target.value;
+    
+    // props.onSave(student, interviewer);
   };
 
   return (
@@ -40,7 +45,7 @@ const Form = (props) => {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel} >Cancel</Button>
-          <Button confirm onClick={props.onSave}>Save</Button>
+          <Button confirm onClick={() => props.onSave(student, interviewer)}>Save</Button>
         </section>
       </section>
     </main>

@@ -14,6 +14,16 @@ const Appointment = (props) => {
 
   console.log("Appointment props", props);
 
+  //name is the name of the student
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+
+    props.bookInterview(props.id, interview);
+  }
+
   let initial = EMPTY;
 
   if (props.interview) {
@@ -37,7 +47,10 @@ const Appointment = (props) => {
         />
       )}
       {mode === CREATE && (
-        <Form interviewers={interviewers} onCancel={back}/>
+        <Form
+          interviewers={interviewers} 
+          onCancel={back}
+          onSave={save} />
       )}
     </Fragment>
   );
