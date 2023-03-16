@@ -4,6 +4,7 @@ import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
+import Status from "./Status";
 import useVisualMode from "hooks/useVisualMode";
 
 const Appointment = (props) => {
@@ -11,6 +12,7 @@ const Appointment = (props) => {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
+  const SAVING = "SAVING";
 
   console.log("Appointment props", props);
 
@@ -20,6 +22,8 @@ const Appointment = (props) => {
       student: name,
       interviewer
     };
+
+    transition(SAVING);
 
     props.bookInterview(props.id, interview)
       .then(() => {
@@ -51,9 +55,13 @@ const Appointment = (props) => {
       )}
       {mode === CREATE && (
         <Form
-          interviewers={interviewers} 
+          interviewers={interviewers}
           onCancel={back}
           onSave={save} />
+      )}
+      {mode === SAVING && (
+        <Status
+          message={"Saving the appointment"} />
       )}
     </Fragment>
   );
