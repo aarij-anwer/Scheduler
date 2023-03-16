@@ -1,6 +1,9 @@
 import React from "react";
 
 const Show = (props) => {
+
+  console.log("Show props", props);
+
   return (<main className="appointment__card appointment__card--show">
     <section className="appointment__card-left">
       <h2 className="text--regular">{props.student}</h2>
@@ -21,7 +24,7 @@ const Show = (props) => {
           className="appointment__actions-button"
           src="images/trash.png"
           alt="Delete"
-          onClick={props.onDelete}
+          onClick={() => props.onDelete(props.id)}
         />
       </section>
     </section>

@@ -30,18 +30,42 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    
+
     const URL = `/api/appointments/${id}`;
     console.log("URL", URL);
 
     return axios.put(URL, appointment)
       .then((response) => {
-        setState({...state, appointments});
+        setState({ ...state, appointments });
         console.log("response from API call", response);
       });
-    
-
   }
+
+  const cancelInterview = (id) => {
+    console.log("cancelInterview", id);
+
+    const URL = `/api/appointments/${id}`;
+    console.log("URL", URL);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    console.log("appointment", appointment);
+    
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    console.log("appointments", appointments);
+    
+    return axios.delete(URL)
+      .then((response) => {
+        setState({ ...state, appointments });
+        console.log("response from API call", response);
+      });
+  };
 
   const setDay = day => setState({ ...state, day });
 
@@ -69,7 +93,8 @@ export default function Application(props) {
       key={appointment.id}
       {...appointment}
       interviewers={dailyInterviewers}
-      bookInterview={bookInterview} />
+      bookInterview={bookInterview}
+      cancelInterview={cancelInterview} />
   });
 
   return (

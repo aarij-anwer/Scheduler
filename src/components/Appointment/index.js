@@ -13,6 +13,7 @@ const Appointment = (props) => {
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
+  const DELETING = "DELETING";
 
   console.log("Appointment props", props);
 
@@ -31,6 +32,15 @@ const Appointment = (props) => {
       });
   }
 
+  const cancelInterview = (id) => {
+
+    transition(DELETING);
+    props.cancelInterview(id)
+      .then(() => {
+        transition(EMPTY);
+      });
+  };
+
   let initial = EMPTY;
 
   if (props.interview) {
@@ -44,13 +54,13 @@ const Appointment = (props) => {
   return (
     <Fragment>
       <Header time={props.time} />
-      {/* {props.interview && <Show student={props.interview.student} interviewer={props.interview.interviewer} />}
-      {!props.interview && <Empty />} */}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          id={props.id}
+          onDelete={cancelInterview}
         />
       )}
       {mode === CREATE && (
@@ -61,7 +71,11 @@ const Appointment = (props) => {
       )}
       {mode === SAVING && (
         <Status
-          message={"Saving the appointment"} />
+          message={"Saving"} />
+      )}
+      {mode === DELETING && (
+        <Status
+          message={"Deleting"} />
       )}
     </Fragment>
   );
