@@ -22,9 +22,6 @@ const Form = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     console.log("submitHandler fired!");
-    const student = event.target.value;
-    
-    // props.onSave(student, interviewer);
   };
 
   return (
