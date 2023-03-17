@@ -21,11 +21,14 @@ export default function Application(props) {
   //id is the appointment id
   function bookInterview(id, interview) {
     console.log("bookInterview", id, interview);
+
+    //get existing appointment object, replace interview with paramater
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
 
+    //get existing appointments, replace appointments[id] 
     const appointments = {
       ...state.appointments,
       [id]: appointment
@@ -34,9 +37,16 @@ export default function Application(props) {
     const URL = `/api/appointments/${id}`;
     console.log("URL", URL);
 
+    const dayIndex = returnDayIndex();
+    console.log("dayIndex", dayIndex);
+
+    const newSpots = state.days[dayIndex].spots - 1;
+    console.log("newSpots", newSpots);
+
     return axios.put(URL, appointment)
       .then((response) => {
         setState({ ...state, appointments });
+        // setState(state.days[dayIndex].spots = newSpots);
         console.log("response from API call", response);
       });
   }
@@ -64,6 +74,14 @@ export default function Application(props) {
   };
 
   const setDay = day => setState({ ...state, day });
+  
+  const returnDayIndex = () => {
+    for (let i=0; i < state.days.length; i++) {
+      if (state.days[i].name === state.day) {
+        return i;     
+      }
+    }
+  };
 
   useEffect(() => {
 
