@@ -5,6 +5,7 @@ import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
+import Confrim from "./Confirm";
 import useVisualMode from "hooks/useVisualMode";
 
 const Appointment = (props) => {
@@ -14,6 +15,7 @@ const Appointment = (props) => {
   const CREATE = "CREATE";
   const SAVING = "SAVING";
   const DELETING = "DELETING";
+  const CONFIRM = "CONFIRM";
 
   console.log("Appointment props", props);
 
@@ -41,6 +43,10 @@ const Appointment = (props) => {
       });
   };
 
+  const confirm = () => {
+    transition(CONFIRM);
+  }
+
   let initial = EMPTY;
 
   if (props.interview) {
@@ -60,7 +66,7 @@ const Appointment = (props) => {
           student={props.interview.student}
           interviewer={props.interview.interviewer}
           id={props.id}
-          onDelete={cancelInterview}
+          onDelete={confirm}
         />
       )}
       {mode === CREATE && (
@@ -76,6 +82,14 @@ const Appointment = (props) => {
       {mode === DELETING && (
         <Status
           message={"Deleting"} />
+      )}
+      {mode === CONFIRM && (
+        <Confrim
+          onCancel={back} 
+          onConfirm={cancelInterview} 
+          id={props.id}
+          message={"Are you sure you would like to delete?"}
+        />
       )}
     </Fragment>
   );

@@ -45,21 +45,17 @@ export default function Application(props) {
     console.log("cancelInterview", id);
 
     const URL = `/api/appointments/${id}`;
-    console.log("URL", URL);
 
     const appointment = {
       ...state.appointments[id],
       interview: null
     };
 
-    console.log("appointment", appointment);
-    
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
-    console.log("appointments", appointments);
-    
+
     return axios.delete(URL)
       .then((response) => {
         setState({ ...state, appointments });
