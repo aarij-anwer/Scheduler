@@ -24,7 +24,6 @@ const Form = (props) => {
     console.log("submitHandler fired!");
   };
 
-  console.log("Form -> interviewer", interviewer);
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">

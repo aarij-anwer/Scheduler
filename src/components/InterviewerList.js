@@ -7,9 +7,11 @@ const InterviewerList = (props) => {
   console.log("InterviewerList props", props);
   
   const mappedInterviewers = props.interviewers.map(interviewer => {
-    console.log("props.value", props.value);
-    console.log("interviewer.id", interviewer.id);
 
+    //workaround necessary to show the interviewer in CREATE and EDIT modes
+    //props.value is null in CREATE
+    //props.value has interviewer's ID during CREATE or when selecting a different interviewer during EDIT
+    //props.value has `interviewer` object during EDIT
     const selected = (props.value) && ((props.value === interviewer.id) || (props.value.id === interviewer.id));
 
     return (<InterviewerListItem
