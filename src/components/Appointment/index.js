@@ -37,17 +37,20 @@ const Appointment = (props) => {
         transition(SHOW);
       })
       .catch((error) => {
-        transition(ERROR_SAVE);
+        transition(ERROR_SAVE, true);
       });
   }
 
   const cancelInterview = (id) => {
 
-    transition(DELETING);
+    transition(DELETING, true);
     props.cancelInterview(id)
       .then(() => {
         transition(EMPTY);
-      });
+      })
+      .catch((error) => {
+        transition(ERROR_DELETE, true);
+      })
   };
 
   const edit = (id) => {
@@ -56,10 +59,6 @@ const Appointment = (props) => {
 
   const confirm = () => {
     transition(CONFIRM);
-  }
-
-  const errorSave = () => {
-    transition(EMPTY);
   }
 
   let initial = EMPTY;
@@ -118,7 +117,12 @@ const Appointment = (props) => {
       {mode === ERROR_SAVE && (
         <Error
           message={"There was an error saving"}
-          onClose={errorSave} />
+          onClose={back} />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error
+          message={"There was an error delete"}
+          onClose={back} />
       )}
     </Fragment>
   );

@@ -22,8 +22,6 @@ const useVisualMode = (initial) => {
     if (mode !== initial) {
       setMode(history[history.length-2]);
       setHistory((prev) => {
-        // let newData = prev.slice();
-        // newData.pop();
         prev.pop();
         return [...prev];
       });
