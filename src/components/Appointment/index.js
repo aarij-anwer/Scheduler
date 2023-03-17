@@ -5,7 +5,7 @@ import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
-import Confrim from "./Confirm";
+import Confirm from "./Confirm";
 import useVisualMode from "hooks/useVisualMode";
 
 const Appointment = (props) => {
@@ -84,7 +84,7 @@ const Appointment = (props) => {
           message={"Deleting"} />
       )}
       {mode === CONFIRM && (
-        <Confrim
+        <Confirm
           onCancel={back} 
           onConfirm={cancelInterview} 
           id={props.id}
