@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 //Custom hook `useApplicationData` will be responsible for loading the initial data from the API. This hook will also provide the actions to update the state, causing the component to render.
