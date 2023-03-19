@@ -1,5 +1,5 @@
+//returns an array of appointments for that day, or an empty array if there are no appointments
 export function getAppointmentsForDay(state, day) {
-  //... returns an array of appointments for that day
 
   let answer;
 
@@ -19,6 +19,7 @@ export function getAppointmentsForDay(state, day) {
   return returnVal;
 }
 
+//returns an object that contains the student name (from `interview.student`) and an interviewer object, null if interview doesn't exist
 export function getInterview(state, interview) {
 
   if (!interview) {
@@ -30,11 +31,11 @@ export function getInterview(state, interview) {
       student: interview.student,
       interviewer: { ...interviwerInfo }
     }
-    console.log(answer);
     return answer;
   }
 }
 
+//returns an array of interviews for that day, or an empty array if there are no interviews
 export function getInterviewersForDay(state, day) {
 
   let answer;
