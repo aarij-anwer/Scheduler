@@ -28,13 +28,20 @@ const useApplicationData = () => {
     };
 
     const URL = `/api/appointments/${id}`;
-    console.log("URL", URL);
 
     //make API call, if successful update the state and return the Promise
     return axios.put(URL, appointment)
       .then((response) => {
         setState({ ...state, appointments });
-        console.log("response from API call", response);
+      })
+      //since days.js has a GET route that updates the spots in the API, an efficient way to keep the state in synch with the API is to make a GET request to `/api/days` and set the state with the response
+      .then(() => {
+        axios.get("/api/days")
+          .then((res) => {
+            setState((prev) => {
+              return ({ ...prev, days: res.data })
+            });
+          });
       });
   }
 
@@ -60,7 +67,15 @@ const useApplicationData = () => {
     return axios.delete(URL)
       .then((response) => {
         setState({ ...state, appointments });
-        console.log("response from API call", response);
+      })
+      //since days.js has a GET route that updates the spots in the API, an efficient way to keep the state in synch with the API is to make a GET request to `/api/days` and set the state with the response
+      .then(() => {
+        axios.get("/api/days")
+          .then((res) => {
+            setState((prev) => {
+              return ({ ...prev, days: res.data })
+            });
+          });
       });
   };
 
@@ -78,9 +93,6 @@ const useApplicationData = () => {
     //when all `promises` resolve, then update the state
     Promise.all(promises)
       .then((all) => {
-        console.log("days", all[0]);
-        console.log("appointments", all[1]);
-        console.log("interviewers", all[2]);
         setState(prev => {
           return ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data });
         });
@@ -91,18 +103,3 @@ const useApplicationData = () => {
 };
 
 export default useApplicationData;
-
-
-// const dayIndex = returnDayIndex();
-// console.log("dayIndex", dayIndex);
-
-// const newSpots = state.days[dayIndex].spots - 1;
-// console.log("newSpots", newSpots);
-
-// const returnDayIndex = () => {
-//   for (let i=0; i < state.days.length; i++) {
-//     if (state.days[i].name === state.day) {
-//       return i;     
-//     }
-//   }
-// };
