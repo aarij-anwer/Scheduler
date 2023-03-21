@@ -10,7 +10,8 @@ const DayList = (props) => {
       key={item.id}
       name={item.name}
       spots={item.spots}
-      setDay={props.onChange} />
+      setDay={props.onChange}
+      selected={item.name === props.value} />
   );
 
   return (

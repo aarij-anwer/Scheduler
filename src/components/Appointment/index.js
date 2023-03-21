@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "components/Appointment/styles.scss"
 import Header from "./Header";
 import Show from "./Show";
@@ -72,7 +72,7 @@ const Appointment = (props) => {
   const interviewers = props.interviewers;
 
   return (
-    <Fragment>
+    <article className="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
@@ -124,7 +124,7 @@ const Appointment = (props) => {
           message={"There was an error delete"}
           onClose={back} />
       )}
-    </Fragment>
+    </article>
   );
 };
 
