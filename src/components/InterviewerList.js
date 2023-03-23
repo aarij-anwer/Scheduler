@@ -1,12 +1,12 @@
 import React from "react";
 import "components/InterviewerList.scss"
 import InterviewerListItem from "./InterviewerListItem";
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 
 const InterviewerList = (props) => {
 
   console.log("InterviewerList props", props);
-  
+
   const mappedInterviewers = props.interviewers.map(interviewer => {
 
     //workaround necessary to show the interviewer in CREATE and EDIT modes
@@ -22,7 +22,7 @@ const InterviewerList = (props) => {
       selected={selected}
       setInterviewer={(event) => props.onChange(interviewer.id)}
     />);
-});
+  });
 
   return (
     <section className="interviewers">
@@ -30,6 +30,10 @@ const InterviewerList = (props) => {
       <ul className="interviewers__list">{mappedInterviewers}</ul>
     </section>
   );
+};
+
+InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired
 };
 
 export default InterviewerList;
