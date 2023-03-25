@@ -3,9 +3,6 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 const Form = (props) => {
-
-  console.log("Form props", props);
-
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
@@ -21,7 +18,6 @@ const Form = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log("submitHandler fired!");
   };
 
   return (
