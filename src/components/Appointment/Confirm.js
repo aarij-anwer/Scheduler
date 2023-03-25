@@ -1,6 +1,13 @@
 import React from "react";
 import Button from "components/Button";
 
+/*
+ `Confirm` component is used when performing destructive actions
+  Expected `props`:
+    message - message displayed in the component
+    onCancel - event handler for onClick event on the cancel button
+    onConfirm - event handler for onClick event on the confim button
+*/
 const Confirm = (props) => {
   return (
     <main className="appointment__card appointment__card--confirm">
