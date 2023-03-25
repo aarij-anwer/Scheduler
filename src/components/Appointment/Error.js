@@ -1,5 +1,11 @@
 import React from "react";
 
+/* 
+  `Error` component is used when displaying an error message
+  Expected `props`:
+    message - message displayed in the component
+    onClose - event handler for onClick event on the image
+*/
 const Error = (props) => {
   return (
     <main className="appointment__card appointment__card--error">

@@ -2,7 +2,17 @@ import React, { useState } from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
+/*
+ `Form` component is used to collect student's name and interviewer selection
+  Expected `props`:
+    student - name of student (if editing an appointment), "" if creating a new appointment
+    interviewer - id of interviewer (if editing an appointment), null if creating a new appointment
+    interviewers - array of objects containing interviewer id, name and avatar
+    onCancel - event handler for onClick event on the cancel button
+    onSave - event handler for onClick event on the save button
+*/
 const Form = (props) => {
+
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
