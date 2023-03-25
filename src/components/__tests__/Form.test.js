@@ -63,7 +63,7 @@ describe("Form", () => {
       <Form
         interviewers={interviewers}
         onSave={onSave}
-        name="Lydia Miller-Jones"
+        student="Lydia Miller-Jones"
       />
     );
 
