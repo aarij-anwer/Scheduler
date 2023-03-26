@@ -13,7 +13,6 @@ const useApplicationData = () => {
 
   //`bookInterview` takes in an the appointment id (`id`) and an `interview` object. It makes an API call to `/api/appointments/:id` to PUT the appointment. It returns a Promise with the result of the API call. 
   function bookInterview(id, interview) {
-    console.log("bookInterview", id, interview);
 
     //get existing appointment object, replace interview with paramater
     const appointment = {
@@ -47,7 +46,6 @@ const useApplicationData = () => {
 
   //`cancelInterview` takes in an the appointment id (`id`). It makes an API call to `/api/appointments/:id` to DELETE the appointment with `id`. It returns a Promise with the result of the API call. 
   const cancelInterview = (id) => {
-    console.log("cancelInterview", id);
 
     const URL = `/api/appointments/${id}`;
 
