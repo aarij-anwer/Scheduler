@@ -1,17 +1,18 @@
 import React from "react";
 import "components/InterviewerListItem.scss"
-// import classNames from "classnames";
 
+/*
+`InterviewerListItem` component is used to list an interviewer in the `InterviewerList` 
+Expected `props`:
+    name - name of the interviewer
+    avatar - URL for the avatar of the interviewer
+    selected - true if the interviewer was selected in `InterviewerList` 
+    setInterviewer - event handler for onClick event on the list item
+*/
 const InterviewerListItem = (props) => {
-
-  console.log("InterviewerListItem props", props);
 
   let interviewerClass = "interviewers__item";
   (props.selected) ? interviewerClass+="--selected" : interviewerClass+="";
-
-  // const interviewerClass = classNames("interviewers__item", {
-  //   "--selected": props.selected
-  // });
 
   return (
     <li className={interviewerClass} onClick={props.setInterviewer}>
