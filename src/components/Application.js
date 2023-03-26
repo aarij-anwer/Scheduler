@@ -6,8 +6,14 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors";
 
+/*
+ `Application` component is driver of the application
+  Expected `props`:
+    none
+*/
 export default function Application(props) {
 
+  //use custom hook to separate concerns
   const {
     state,
     setDay,
@@ -15,12 +21,18 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
+  //get an array of appointments for state.day 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+
+  //get an array of interviews for state.day
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   const mappedAppointments = dailyAppointments.map((appointment) => {
+
+    //get object that contains the student name (from appointment.interview.student) and an interviewer object (with id, name and avatar)
     const interview = getInterview(state, appointment.interview);
 
+    //pass the interview object, dailyInterviews array and other variables as props to Appointment
     return <Appointment
       key={appointment.id}
       id={appointment.id}
