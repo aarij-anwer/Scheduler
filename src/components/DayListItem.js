@@ -2,8 +2,15 @@ import React from "react";
 import classNames from "classnames";
 import "components/DayListItem.scss";
 
+/*
+ `DayListItme` component is used to list an individual day of the week and spots remaining
+  Expected `props`:
+    name - name of day of the week 
+    selected - true if the day was selected by the user 
+    spots - number of spots available for the day
+    setDay - event handler for onClick event on the day list to select the day
+*/
 export default function DayListItem(props) {
-  console.log("DayListItem props", props);
 
   const spots = props.spots === 0;
 
@@ -12,6 +19,7 @@ export default function DayListItem(props) {
     "--full": spots
   });
 
+  //returns the correct text for the number of remaining spots
   const spotsText = () => {
     let answer = props.spots + " spots remaining";
 
