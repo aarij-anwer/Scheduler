@@ -1,5 +1,10 @@
 import React from "react";
 
+/* 
+  `Status` component is used when displaying loading message
+  Expected `props`:
+    message - message displayed in the component
+*/
 const Status = (props) => {
   return (
     <main className="appointment__card appointment__card--status">

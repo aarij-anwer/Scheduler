@@ -9,6 +9,17 @@ import Confirm from "./Confirm";
 import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
+/*
+ `Appointment` component is used to perform CRUD functions on appointments
+  Expected `props`:
+    id - appointment id
+    interview - object containing student name and an interviewer object containing interviewer id, name and avatar, null if no appointment is booked
+    student - name of student 
+    interviewers - array of interviewer objects containing interviewer id, name and avatar
+    time - time slot for the appointment
+    cancelInterview - event handler for onClick event on the delete image
+    bookInterview - event handler for onClick event on the save button
+*/
 const Appointment = (props) => {
 
   const EMPTY = "EMPTY";
@@ -21,8 +32,6 @@ const Appointment = (props) => {
   const ERROR_SAVE = "ERROR_SAVE";
   const ERROR_DELETE = "ERROR_DELETE";
 
-  console.log("Appointment props", props);
-
   //name is the name of the student
   function save(name, interviewer) {
     const interview = {
@@ -32,6 +41,7 @@ const Appointment = (props) => {
 
     transition(SAVING);
 
+    //once the Promise is resolved, transition to SHOW, otherwise transition to ERROR_SAVE, replacing the history
     props.bookInterview(props.id, interview)
       .then(() => {
         transition(SHOW);
@@ -41,8 +51,8 @@ const Appointment = (props) => {
       });
   }
 
+  //transition to DELETING state first, then once the Promise is resolved, transition to EMPTY, otherwise transition to ERROR_DELETE, replacing the history
   const cancelInterview = (id) => {
-
     transition(DELETING, true);
     props.cancelInterview(id)
       .then(() => {
@@ -63,6 +73,7 @@ const Appointment = (props) => {
 
   let initial = EMPTY;
 
+  //appointment is booked
   if (props.interview) {
     initial = SHOW;
   }
