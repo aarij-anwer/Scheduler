@@ -1,9 +1,15 @@
 import React from "react";
 
+/*
+ `Show` component is used to display a booked appointment
+  Expected `props`:
+    id - appointment id
+    student - name of student 
+    interviewer - object containing interviewer id, name and avatar
+    onDelete - event handler for onClick event on the delete image
+    onEdit - event handler for onClick event on the edit image
+*/
 const Show = (props) => {
-
-  console.log("Show props", props);
-
   return (<main className="appointment__card appointment__card--show">
     <section className="appointment__card-left">
       <h2 className="text--regular">{props.student}</h2>

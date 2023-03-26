@@ -1,6 +1,10 @@
 import React from "react";
-// import "components/Appointment/Header.scss";
 
+/*
+ `Header` component is used to display appointment times
+  Expected `props`:
+    time - time of the appointment
+*/
 const Header = (props) => {
   return (
     <header className="appointment__time">
