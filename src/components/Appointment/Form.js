@@ -42,6 +42,7 @@ const Form = (props) => {
       return;
     }
   
+    setError("");
     props.onSave(student, interviewer);
   };
 
