@@ -30,7 +30,8 @@ jobs:
       - run:
           name: Push Master to Production
           command: |
-            git push https://github.com/lighthouse-labs/scheduler.git master:production
+            git push https://github.com/aarij-anwer/Scheduler 
+            master:production
 
 workflows:
   version: 2
