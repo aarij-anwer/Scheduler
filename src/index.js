@@ -24,8 +24,8 @@ function reloadIndexJs(num) {
     console.log("Reloading index.js");
     localStorage.setItem("reloadAttempts", String(reloadAttempts + 1));
     setTimeout(() => {
+      axios.get("/api/appointments");
       window.location.reload();
-      axios.get("/api/days");
     }, 1000); // Wait for 1 second before reloading
   } else {
     console.error("API could not be loaded after multiple attempts");
